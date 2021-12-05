@@ -21,7 +21,7 @@ type ConsultaNota struct {
 
 type API int
 
-var database[]ItemNota
+var database []ItemNota
 
 func (a *API) GetDatabase(empty string, reply *[]ItemNota) error {
 	*reply = database
@@ -104,7 +104,7 @@ func (a *API) ConsultarCR(matricula string, reply *string) error {
 
 	if found {
 		cr := fmt.Sprintf("%.2f", (soma_notas/quantidade_notas))
-		*reply = "CR: "+cr
+		*reply = "CR: " + cr
 	} else {
 		str := "ERRO: Não há notas cadastradas para essa matrícula"
 		*reply = str

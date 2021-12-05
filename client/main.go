@@ -29,7 +29,7 @@ func main() {
 	var database []ItemNota
 
 	var option int
-	var end = true
+	var end = false
 
 	client, err := rpc.DialHTTP("tcp", "localhost:4040")
 
@@ -37,7 +37,7 @@ func main() {
 		log.Fatal("Connection error: ", err)
 	}
 
-	for end {
+	for !end {
 		fmt.Println("Digite o número correspondente à operação que você deseja executar e aperte 'Enter':")
 		fmt.Println("")
 		fmt.Println("1 - Cadastrar uma nota de um aluno")
@@ -106,7 +106,7 @@ func main() {
 				client.Call("API.GetDatabase", "", &database)
 				showDatabase(database)
 
-				end = false
+				end = true
 		}
 		fmt.Println("")
 	}

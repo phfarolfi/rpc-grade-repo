@@ -19,14 +19,14 @@ type ConsultaNota struct {
 
 func showDatabase(database []ItemNota) {
 	for _, data := range database {
-		fmt.Printf("{Matrícula: %s, CodDisciplina: %s, Nota: %.2f}\n", data.Matricula, data.CodDisciplina, data.Nota)
+		fmt.Printf("{ Matrícula: %s, CodDisciplina: %s, Nota: %.2f }\n", data.Matricula, data.CodDisciplina, data.Nota)
 	}
 }
 
 func main() {
 	var reply string
 	var reply_notas []float64
-	var db []ItemNota
+	var database []ItemNota
 
 	var option int
 	var end = true
@@ -68,7 +68,7 @@ func main() {
 				var item = ItemNota{matricula, cod_disciplina, nota}
 
 				client.Call("API.CadastrarNota", item, &reply)
-				fmt.Println("\n",reply)
+				fmt.Println("\n", reply)
 			case 2:
 				var matricula, cod_disciplina string
 
@@ -81,7 +81,7 @@ func main() {
 				var item_nota = ConsultaNota{matricula, cod_disciplina}
 
 				client.Call("API.ConsultarNota", item_nota, &reply)
-				fmt.Println("\n",reply)
+				fmt.Println("\n", reply)
 			case 3:
 				var matricula string
 
@@ -89,7 +89,7 @@ func main() {
 				fmt.Scan(&matricula)
 
 				client.Call("API.ConsultarNotas", matricula, &reply_notas)
-				fmt.Println("Notas:",reply_notas)
+				fmt.Println("Notas:", reply_notas)
 				fmt.Println("")
 			case 4:
 				var matricula string
@@ -98,13 +98,13 @@ func main() {
 				fmt.Scan(&matricula)
 
 				client.Call("API.ConsultarCR", matricula, &reply)
-				fmt.Println("\n",reply)
+				fmt.Println("\n", reply)
 			case 5:
-				client.Call("API.GetDatabase", "", &db)
-				showDatabase(db)
+				client.Call("API.GetDatabase", "", &database)
+				showDatabase(database)
 			case 0:
-				client.Call("API.GetDatabase", "", &db)
-				showDatabase(db)
+				client.Call("API.GetDatabase", "", &database)
+				showDatabase(database)
 
 				end = false
 		}
